@@ -36,7 +36,7 @@ public class BorsaController {
         sembol = sembol.toUpperCase().trim();
 
         try {
-            String apiKey = "KEIMFYMFBX76DI6C";
+            String apiKey = "SC9CE10UOQ7YEJG3";
             HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(10)).build();
             ObjectMapper mapper = new ObjectMapper();
 
