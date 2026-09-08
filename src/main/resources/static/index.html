@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI QUANTUM ENGINE - Institutional Terminal</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #000000;
+            color: #e0e0e0;
+            padding: 30px;
+            letter-spacing: 0.3px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 1.4rem;
+            color: #ffffff;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .badge {
+            background: #111;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #888;
+            border: 1px solid #333;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .search-box {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            background: #0a0a0a;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #222;
+        }
+        input {
+            flex: 1;
+            background: #141414;
+            border: 1px solid #333;
+            color: #ffffff;
+            padding: 14px 18px;
+            font-size: 1rem;
+            border-radius: 4px;
+            outline: none;
+            font-weight: 500;
+        }
+        input:focus {
+            border-color: #ffffff;
+        }
+        button {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 0 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s, opacity 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        button:hover {
+            opacity: 0.85;
+        }
+        .quick-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .quick-label {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-right: 5px;
+        }
+        .quick-btn {
+            background: #0f0f0f;
+            border: 1px solid #262626;
+            color: #b0b0b0;
+            padding: 8px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .quick-btn:hover {
+            background: #222;
+            color: #ffffff;
+            border-color: #555;
+        }
+        .progress-bar {
+            width: 100%;
+            background-color: #111;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            display: none;
+        }
+        .progress-bar-fill {
+            height: 3px;
+            background-color: #ffffff;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 24px;
+        }
+        .card-title {
+            font-size: 0.75rem;
+            color: #777;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        .card-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .matrix-box {
+            background: #0f0f0f;
+            padding: 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border-left: 3px solid #ffffff;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #dcdcdc;
+            border-top: 1px solid #1a1a1a;
+            border-right: 1px solid #1a1a1a;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .ai-decision {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 24px;
+        }
+        .decision-header {
+            font-size: 0.75rem;
+            color: #777;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+        .decision-box {
+            display: inline-block;
+            padding: 8px 16px;
+            font-weight: 700;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        .decision-al { background: #ffffff; color: #000000; border: 1px solid #ffffff; }
+        .decision-sat { background: #222222; color: #ffffff; border: 1px solid #444444; }
+        .decision-bekle { background: #141414; color: #aaaaaa; border: 1px solid #333333; }
+        .decision-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>AI Quantum Engine</h1>
+        <div class="badge">Multi-Agent Asynchronous Terminal</div>
+    </header>
+
+    <div class="search-box">
+        <input type="text" id="symbolInput" placeholder="Varlık veya Komut Girin (Örn: TSLA, AAPL, ENIYI, SEPET, HALKAARZ)" value="TSLA">
+        <button onclick="analizCalistir()">EXECUTE</button>
+    </div>
+
+    <div class="quick-actions">
+        <span class="quick-label">Komutlar:</span>
+        <button class="quick-btn" onclick="hizliAra('TSLA')">TSLA</button>
+        <button class="quick-btn" onclick="hizliAra('AAPL')">AAPL</button>
+        <button class="quick-btn" onclick="hizliAra('NVDA')">NVDA</button>
+        <button class="quick-btn" onclick="hizliAra('ENIYI')">ENIYI (Screener)</button>
+        <button class="quick-btn" onclick="hizliAra('SEPET')">SEPET</button>
+        <button class="quick-btn" onclick="hizliAra('HALKAARZ')">HALKAARZ</button>
+    </div>
+
+    <!-- Yeni İlerleme Çubuğu -->
+    <div class="progress-bar" id="progressBar">
+        <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div class="card-title">Varlık Tanımı</div>
+            <div class="card-value" id="resSembol">---</div>
+            <br>
+            <div class="card-title">Anlık Piyasa Fiyatı</div>
+            <div class="card-value" id="resFiyat" style="color: #ffffff;">---</div>
+        </div>
+        <div class="card">
+            <div class="card-title">24 Saatlik İşlem Hacmi</div>
+            <div class="card-value" id="resHacim" style="font-size: 1.5rem;">---</div>
+            <br>
+            <div class="card-title">Terminal Durumu</div>
+            <div class="card-value" style="font-size: 1rem; color: #888; font-weight: 500;" id="statusText">Sistem Hazır</div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-bottom: 20px;">
+        <div class="card-title">Kantitatif Risk & Alt Ajan Raporları</div>
+        <br>
+        <div class="matrix-box" id="resHaber">
+            Sistem tetiklenmedi. Veri akışları bekleniyor...
+        </div>
+    </div>
+
+    <div class="ai-decision">
+        <div class="decision-header">CEO AI (Baş Risk Yöneticisi) Karar Sentezi</div>
+        <div id="decisionBadge" class="decision-box decision-bekle">BEKLENİYOR</div>
+        <div class="decision-text" id="resKarar">
+            Alt ajanlardan rapor bekleniyor.
+        </div>
+    </div>
+</div>
+
+<script>
+    let progressInterval;
+
+    async function analizCalistir() {
+        let sembol = document.getElementById('symbolInput').value.trim();
+        if(!sembol) sembol = "TSLA";
+
+        document.getElementById('resSembol').innerText = sembol.toUpperCase();
+        document.getElementById('resFiyat').innerText = "Hesaplanıyor...";
+        document.getElementById('resHacim').innerText = "Hesaplanıyor...";
+        document.getElementById('resHaber').innerHTML = "Multi-Agent sistemi paralel işlemlere başladı. Kantitatif ve Haber ajanları verileri tarıyor...";
+        document.getElementById('resKarar').innerText = "CEO Yapay Zeka geçmiş hafızayı (Memory) ve ajan raporlarını sentezliyor...";
+
+        let statusText = document.getElementById('statusText');
+        statusText.innerText = "Asenkron İşlem Yürütülüyor...";
+        statusText.style.color = "#ffffff";
+
+        let badge = document.getElementById('decisionBadge');
+        badge.className = "decision-box decision-bekle";
+        badge.innerText = "İŞLENİYOR";
+
+        // Asenkron Paralel animasyonu
+        let progressFill = document.getElementById('progressFill');
+        document.getElementById('progressBar').style.display = "block";
+        let width = 0;
+        clearInterval(progressInterval);
+        progressInterval = setInterval(() => {
+            if (width >= 90) {
+                clearInterval(progressInterval);
+            } else {
+                width += 5;
+                progressFill.style.width = width + '%';
+            }
+        }, 1000);
+
+        try {
+            let response = await fetch(`/api/analiz?sembol=${sembol}`);
+            let data = await response.json();
+
+            // İşlem bittiğinde barı doldur ve gizle
+            clearInterval(progressInterval);
+            progressFill.style.width = '100%';
+            setTimeout(() => { document.getElementById('progressBar').style.display = "none"; }, 800);
+
+            if(data.hata) {
+                document.getElementById('resHaber').innerHTML = `<span style="color:#ff5555">Hata: ${data.hata}</span>`;
+                statusText.innerText = "Hata Oluştu";
+                return;
+            }
+
+            document.getElementById('resSembol').innerText = data.sembol || sembol;
+            document.getElementById('resFiyat').innerText = data.fiyat || "N/A";
+            document.getElementById('resHacim').innerText = data.hacim || "0";
+            document.getElementById('resHaber').innerHTML = data.haber || "Veri bulunamadı.";
+            statusText.innerText = "Deterministic & Secure";
+            statusText.style.color = "#888";
+
+            let kararMetni = data.yapayZekaKarari || "BEKLE";
+            let ustKarar = kararMetni.toUpperCase();
+
+            if(ustKarar.startsWith("AL")) {
+                badge.className = "decision-box decision-al";
+                badge.innerText = "ALIM SİNYALİ (BUY)";
+            } else if(ustKarar.startsWith("SAT")) {
+                badge.className = "decision-box decision-sat";
+                badge.innerText = "SATIM SİNYALİ (SELL)";
+            } else {
+                badge.className = "decision-box decision-bekle";
+                badge.innerText = "BEKLE / KORUMA (HOLD)";
+            }
+
+            document.getElementById('resKarar').innerText = kararMetni;
+
+        } catch (err) {
+            clearInterval(progressInterval);
+            document.getElementById('progressBar').style.display = "none";
+            alert("Bağlantı hatası: " + err);
+        }
+    }
+
+    function hizliAra(sembol) {
+        document.getElementById('symbolInput').value = sembol;
+        analizCalistir();
+    }
+
+    window.onload = function() {
+        analizCalistir();
+    };
+</script>
+</body>
+</html>
